@@ -51,8 +51,8 @@ class Address {
   factory Address.fromJson(Map<String, dynamic> address) => Address(
       elevation: double.tryParse(tryParse(address['elevation'])),
       timezone: tryParse(address['timezone']),
-      geoNumber: int.tryParse(tryParse(address['geonumber'])),
-      streetNumber: int.tryParse(tryParse(address['stnumber'])),
+      geoNumber: tryParse(address['geonumber']) == null ? null : int.tryParse(tryParse(address['geonumber'])),
+      streetNumber: tryParse(address['stnumber']) == null ? null : int.tryParse(tryParse(address['stnumber'])),
       streetAddress: tryParse(address['staddress']),
       city: tryParse(address['city']),
       countryCode: tryParse(address['prov']),
