@@ -35,6 +35,12 @@ class Address {
   /// The distance of the result location from the input location.
   double distance;
 
+  /// The properly formated district name to be returned.
+  String district;
+
+  /// The properly formated ward name to be returned.
+  String ward;
+
   Address(
       {this.elevation,
       this.timezone,
@@ -46,7 +52,9 @@ class Address {
       this.countryName,
       this.region,
       this.postal,
-      this.distance});
+      this.distance,
+      this.district,
+      this.ward});
 
   factory Address.fromJson(Map<String, dynamic> address) => Address(
       elevation: double.tryParse(tryParse(address['elevation'])),
@@ -59,12 +67,15 @@ class Address {
       countryName: tryParse(address['country']),
       region: tryParse(address['region']),
       postal: tryParse(address['postal']),
-      distance: double.tryParse(tryParse(address['distance'])));
+      distance: double.tryParse(tryParse(address['distance'])),
+      district: tryParse(address['adminareas']['admin6']['name']),
+      ward: tryParse(address['adminareas']['admin8']['name'])
+  );
 
   @override
   String toString() =>
       "GEOCODE: elevation=$elevation, timezone=$timezone, geoNumber=$geoNumber," +
       "streetNumber=$streetNumber, streetAddress=$streetAddress, city=$city, " +
       "countryCode=$countryCode, countryName=$countryName, region=$region, " +
-      "postal=$postal, distance=$distance";
+      "postal=$postal, distance=$distance, district=$district, ward=$ward";
 }
